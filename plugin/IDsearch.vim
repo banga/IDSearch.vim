@@ -63,7 +63,7 @@ endfunction
 "FUNCTION: returns a new unique buffer name
 "
 function! s:nextSearchBufferName()
-    let name = s:IDSearchBufName . s:next_search_buffer_number
+	let name = s:IDSearchBufName . s:next_search_buffer_number
     let s:next_search_buffer_number += 1
     return name
 endfunction
@@ -185,7 +185,7 @@ endfunction
 function! s:setMappings()
 	"Preview files
 	autocmd CursorMoved <buffer> nested call s:onCursorMoved()
-	
+
 	"Open file in same window when Enter is pressed
 	noremap <silent> <buffer> <CR> :call <SID>openFile()<CR>
 
@@ -231,46 +231,46 @@ function! s:createSearchWin()
 	let t:callingWinBufNum = winbufnr(0)
 	let t:callingWinView = winsaveview()
 	let splitLocation = "botright "
-    let splitSize = g:IDSearch_search_window_height
+	let splitSize = g:IDSearch_search_window_height
 
-    if !exists('t:IDSearchBufName')
-        let t:IDSearchBufName = s:nextSearchBufferName()
-        silent! exec splitLocation . splitSize . ' new'
-        silent! exec "edit " . t:IDSearchBufName
+	if !exists('t:IDSearchBufName')
+		let t:IDSearchBufName = s:nextSearchBufferName()
+		silent! exec splitLocation . splitSize . ' new'
+		silent! exec "edit " . t:IDSearchBufName
 
 		call s:setMappings()
-    else
+	else
 		if s:isSearchWinOpen()
 			silent! exec s:getSearchWinNum() . "wincmd w" 
 		else
-        	silent! exec splitLocation . splitSize . ' split'
-        	silent! exec "buffer " . t:IDSearchBufName
+			silent! exec splitLocation . splitSize . ' split'
+			silent! exec "buffer " . t:IDSearchBufName
 		endif
-    endif
+	endif
 
-    setlocal winfixheight
+	setlocal winfixheight
 
-    "throwaway buffer options
-    setlocal noswapfile
-    setlocal buftype=nofile
-    setlocal nowrap
-    setlocal foldcolumn=0
-    setlocal nobuflisted
-    setlocal nospell
-    setlocal nu
+	"throwaway buffer options
+	setlocal noswapfile
+	setlocal buftype=nofile
+	setlocal nowrap
+	setlocal foldcolumn=0
+	setlocal nobuflisted
+	setlocal nospell
+	setlocal nu
 
-    iabc <buffer>
-    setlocal cursorline
+	iabc <buffer>
+	setlocal cursorline
 
 	setlocal modifiable
 	silent %delete _
 
 	silent exec "lcd " + t:cwd
-    call s:setupSearchStatusline()
+	call s:setupSearchStatusline()
 
-    if has("syntax") && exists("g:syntax_on")
-        call s:setupSyntaxHighlighting()
-    endif
+	if has("syntax") && exists("g:syntax_on")
+		call s:setupSyntaxHighlighting()
+	endif
 endfunction
 
 "
