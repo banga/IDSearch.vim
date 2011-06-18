@@ -1,0 +1,20 @@
+This is a plugin that uses GNU id-utils (http://www.gnu.org/software/idutils/) for a quick find-in-files and preview from within vim.
+It searches for a word using the 'gid' command and lists the results in a small window. As you move over the results, each file is shown in a preview window. 
+
+To edit the previewed file in the same window, press Enter (<CR>). To go back to the original file, press H.
+To open it in a new tab, press t.
+To open silently in a new tab, press T. 
+
+Note: 
+This is my first attempt at writing a vim script. I used NERDTree's source to learn how to do certain things. It's a fantastic plugin for file exploration and more.
+
+INSTALLATION
+************
+
+Install GNU id-utils and generate an ID file for your project tree with mkid. 
+Map the g:IDSearchCurrentWord() and g:IDSearchCustom() functions to suitable keys 
+eg: 
+map <C-F> :call g:IDSearchCurrentWord()<CR>
+map <C-G> :call g:IDSearchCustom()<CR>
+
+This will search for the word under the cursor when Ctrl-f is pressed and prompt you for the search word when Ctrl-g is pressed. The word can use * and ? wildcards (see id-utils manual for details).
