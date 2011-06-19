@@ -51,7 +51,7 @@ function! s:initIDSearch()
 
 		"Set global defaults if not already set
 		call s:setGlobalDefault('g:IDSearch_search_window_height', 5)
-		call s:setGlobalDefault('g:IDSearch_KEY_show_original', 'h')
+		call s:setGlobalDefault('g:IDSearch_KEY_show_original', '<c-h>')
 
 		let s:IDSearchInited = 1
 	endif
